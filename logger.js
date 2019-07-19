@@ -1,4 +1,5 @@
 const GS = require('google-spreadsheet');
+const ora = require('ora');
 const env = require('./env.json');
 
 let doc;
@@ -29,21 +30,25 @@ function init(cb) {
     });
 }
 
-function postLog(data) {
+function postLog(data, cb) {
+    let o = ora().start();
     doc.addRow(1, data, function(err) {
+        o.stop();
         if(err) {
           console.log(err);
         }
+        return cb(err);
     });
 }
 
 function startLogging () {
-    stdin.addListener("data", (log) =>  {
+    stdin.addListener('data', (log) =>  {
         log = log.toString().trim();
         if (!log) return;
         let date = new Date();
         let logR = `${date.toLocaleTimeString()} : ${log}`;
-        console.log('\033[1A\033[K' + logR);
-        postLog({date, log});
+        postLog({date, log}, (err) => {
+            console.log('\x1b[32m\033[1A\033[K' + logR + ' \u2713');
+        });
     });
 }
