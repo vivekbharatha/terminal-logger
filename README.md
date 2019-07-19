@@ -17,13 +17,13 @@ Simple tool to log your daily task in a terminal.
 - Preparing the env.json 
   - Add your google sheet id from your sheet url in env.json file, with key as **sheet_id**
   Example:
-  ``` json
-  {
-    "sheet_id": "<sheet id from url>",
+  
+  { 
+    "sheet_id": "sheet id from url here",
     .
     .
   }
-  ```
+  
   
   - Installing
   
@@ -31,3 +31,7 @@ Simple tool to log your daily task in a terminal.
   - Running
   
   `npm start`
+
+### Upcoming
+- Tick icon, once the log is saved to sheet
+- Total logs info on startup
