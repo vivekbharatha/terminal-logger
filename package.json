@@ -1,0 +1,23 @@
+{
+  "name": "terminal-logger",
+  "version": "1.0.0",
+  "description": "",
+  "main": "logger.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vivekbharatha/terminal-logger.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vivekbharatha/terminal-logger/issues"
+  },
+  "homepage": "https://github.com/vivekbharatha/terminal-logger#readme",
+  "dependencies": {
+    "google-spreadsheet": "^2.0.7"
+  }
+}
