@@ -3,7 +3,12 @@
 Simple tool to log your daily task in a terminal.
 
 ## Features
-- saving logs to google sheet (your account)
+- [x] saving logs to google sheet (your account)
+- [x] Tick icon, once the log is saved to sheet
+- [x] Loading icon on saving the log
+- [ ] Total logs info on startup
+- [ ] Offline functionality (saving to sqliteDB and sync later online)
+- [ ] Making google sheet saving as optional
 
 ### Setup & Installation
 - Configuring the google sheet
@@ -32,8 +37,4 @@ Simple tool to log your daily task in a terminal.
   
   `npm start`
 
-### Upcoming
-- Tick icon, once the log is saved to sheet
-- Total logs info on startup
-- Offline functionality (saving to sqliteDB and sync later online)
-- Making google sheet saving as optional
+
