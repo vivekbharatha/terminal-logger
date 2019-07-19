@@ -35,3 +35,5 @@ Simple tool to log your daily task in a terminal.
 ### Upcoming
 - Tick icon, once the log is saved to sheet
 - Total logs info on startup
+- Offline functionality (saving to sqliteDB and sync later online)
+- Making google sheet saving as optional
