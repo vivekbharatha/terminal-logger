@@ -3,38 +3,16 @@
 Simple tool to log your daily task in a terminal.
 
 ## Features
-- [x] saving logs to google sheet (your account)
 - [x] Tick icon, once the log is saved to sheet
 - [x] Loading icon on saving the log
 - [ ] Total logs info on startup
-- [ ] Offline functionality (saving to sqliteDB and sync later online)
-- [ ] Making google sheet saving as optional
+- [x] Offline functionality (saving to sqliteDB)
+- [ ] Command based execution for below tasks to trigger
+- [ ] Flexible reading of logs
+- [ ] Reset DB functionality
+- [ ] Export logs to csv / xlsx
 
 ### Setup & Installation
-- Configuring the google sheet
-  - Go to the [Google APIs Console](https://console.developers.google.com/).
-  - Create new project with **terminal-logger** or any name you want
-  - Click **Enable API**. Enable the Google Drive API in search bar.
-  - Create credentials for a Web Server to access Application Data.
-  - Name the service account and grant it a Project Role of Editor.
-  - Download the JSON file, place in repo folder and rename to **env.json**
+`npm install`
   
-- Preparing the env.json 
-  - Add your google sheet id from your sheet url in env.json file, with key as **sheet_id**
-  Example:
-  
-  { 
-    "sheet_id": "sheet id from url here",
-    .
-    .
-  }
-  
-  
-  - Installing
-  
-  `npm install`
-  - Running
-  
-  `npm start`
-
-
+`npm start`
