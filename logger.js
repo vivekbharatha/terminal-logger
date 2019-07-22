@@ -1,44 +1,31 @@
-const GS = require('google-spreadsheet');
+const db = require('./db');
 const ora = require('ora');
-const env = require('./env.json');
-
-let doc;
 
 let stdin = process.openStdin();
 
 console.log('Welcome logger!');
 
-init(() => {
-    console.log('Connected to google sheet!');
+init();
+
+function init() {
+    console.log("Initializing.....");
+    try {
+        db.init();
+    } catch (e) {
+        console.log('DB init error: ', e);
+        process.exit(1);
+    }
+    console.log('Connected to db!');
     console.log('Start typing the log and hit that enter');
     console.log('---------------------------------------');
-
     startLogging();
-});
-
-function init(cb) {
-    //TODO:: validations
-    console.log("Initializing.....");
-
-    doc = new GS(env.sheet_id);
-    doc.useServiceAccountAuth(env, (err) => {
-        if (err) {
-            console.log(err);
-            return process.exit(1);
-        }
-        return cb();
-    });
 }
 
-function postLog(data, cb) {
+function postLog(data) {
     let o = ora().start();
-    doc.addRow(1, data, function(err) {
-        o.stop();
-        if(err) {
-          console.log(err);
-        }
-        return cb(err);
-    });
+    let info = db.models.log.create(data);
+    console.log(info);
+    o.stop();
 }
 
 function startLogging () {
@@ -47,8 +34,7 @@ function startLogging () {
         if (!log) return;
         let date = new Date();
         let logR = `${date.toLocaleTimeString()} : ${log}`;
-        postLog({date, log}, (err) => {
-            console.log('\x1b[32m\033[1A\033[K' + logR + ' \u2713');
-        });
+        postLog({date: date.toISOString(), log: log});
+        console.log('\x1b[32m\033[1A\033[K' + logR + ' \u2713\x1b[0m');
     });
 }
