@@ -9,7 +9,7 @@ Simple tool to log your daily task in a terminal.
 - [x] Offline functionality (saving to sqliteDB)
 - [ ] Command based execution for below tasks to trigger
 - [ ] Flexible reading of logs
-- [ ] Reset DB functionality
+- [x] Reset DB functionality
 - [ ] Export logs to csv / xlsx
 
 ### Setup & Installation
