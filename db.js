@@ -14,16 +14,26 @@ _module.init = () => {
 };
 
 const logCreateStmt = db.prepare('INSERT INTO logs (date, log) VALUES (?, ?)');
+const logLatestStmt = db.prepare('SELECT * FROM logs ORDER BY date DESC LIMIT ?');
 
-let log = {};
+let logs = {};
 
-log.create = (data) => {
+logs.create = (data) => {
     return logCreateStmt.run(data.date, data.log);
 };
 
+logs.getLatest = (numberOfRecords) => {
+    return logLatestStmt.all(numberOfRecords);
+}
+
+logs.reset = () => {
+    db.exec('DELETE from logs');
+    console.log('logs reset done');
+}
+
 _module.db = db;
 _module.models = {
-    log: log 
+    logs: logs
 };
 
 module.exports = _module;

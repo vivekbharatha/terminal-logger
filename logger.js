@@ -1,6 +1,9 @@
 const db = require('./db');
 const ora = require('ora');
 
+const config = require('./config');
+const cmder = require('./cmder');
+
 let stdin = process.openStdin();
 
 console.log('Welcome logger!');
@@ -23,7 +26,7 @@ function init() {
 
 function postLog(data) {
     let o = ora().start();
-    let info = db.models.log.create(data);
+    let info = db.models.logs.create(data);
     console.log(info);
     o.stop();
 }
@@ -32,6 +35,9 @@ function startLogging () {
     stdin.addListener('data', (log) =>  {
         log = log.toString().trim();
         if (!log) return;
+        if (cmder.parseInput(log)) {
+            return;
+        };
         let date = new Date();
         let logR = `${date.toLocaleTimeString()} : ${log}`;
         postLog({date: date.toISOString(), log: log});
