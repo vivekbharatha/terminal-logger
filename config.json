@@ -1,0 +1,6 @@
+{
+    "CMD_KEYWORDS": {
+        "LIST_X": "List latest X records from db",
+        "RESET_LOGS": "Resets the entire logs"
+    }
+}
