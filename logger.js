@@ -40,7 +40,7 @@ function startLogging () {
         };
         let date = new Date();
         let logR = `${date.toLocaleTimeString()} : ${log}`;
-        postLog({date: date.toISOString(), log: log});
+        postLog({date: date, log: log});
         console.log('\x1b[32m\033[1A\033[K' + logR + ' \u2713\x1b[0m');
     });
 }
