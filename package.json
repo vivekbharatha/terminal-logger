@@ -19,6 +19,7 @@
   "homepage": "https://github.com/vivekbharatha/terminal-logger#readme",
   "dependencies": {
     "better-sqlite3": "5.4.1",
+    "console.table": "^0.10.0",
     "google-spreadsheet": "2.0.7",
     "ora": "3.4.0"
   }
