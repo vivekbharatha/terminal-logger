@@ -1,4 +1,5 @@
 const db = require('./db');
+const cT = require('console.table');
 
 let _module = {};
 
@@ -24,7 +25,11 @@ _module.LIST_X = (data) => {
     let n = data.match(_module.regexp.LIST_X)[1];
     n = parseInt(n);
     let logs = db.models.logs.getLatest(n);
-    console.log(logs);
+    log = logs.map((log) => {
+        log.date = new Date(log.date).toLocaleString();
+        delete log.tz_offset;
+    });
+    console.table(logs);
 }
 
 _module.RESET_LOGS = () => {
