@@ -1,7 +1,7 @@
 const db = require('./db');
 const ora = require('ora');
+const moment = require('moment');
 
-const config = require('./config');
 const cmder = require('./cmder');
 
 let stdin = process.openStdin();
@@ -21,6 +21,7 @@ function init() {
     console.log('Connected to db!');
     console.log('Start typing the log and hit that enter');
     console.log('---------------------------------------');
+    showLatestByDay(1);
     startLogging();
 }
 
@@ -29,6 +30,18 @@ function postLog(data) {
     let info = db.models.logs.create(data);
     console.log(info);
     o.stop();
+}
+
+function showLatestByDay(numberOfDays) {
+    let fromDate = moment().subtract(numberOfDays, 'days');
+    let logs = db.models.logs.getLogsFrom(fromDate.toISOString());
+    if (logs && logs.length > 0) {
+        console.log('Your last 1 day / 24 hours logs\n');
+        logs = db.models.logs.parse(logs);
+        console.table(logs);
+    } else {
+        console.log(`No logs found from ${fromDate.toLocaleString()}`);
+    }
 }
 
 function startLogging () {
