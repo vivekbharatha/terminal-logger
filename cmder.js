@@ -25,10 +25,7 @@ _module.LIST_X = (data) => {
     let n = data.match(_module.regexp.LIST_X)[1];
     n = parseInt(n);
     let logs = db.models.logs.getLatest(n);
-    log = logs.map((log) => {
-        log.date = new Date(log.date).toLocaleString();
-        delete log.tz_offset;
-    });
+    logs = db.models.logs.parse(logs);
     console.table(logs);
 }
 
