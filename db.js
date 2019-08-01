@@ -1,5 +1,5 @@
 const sqlite3 = require('better-sqlite3');
-const db = new sqlite3('./database.db', {});
+const db = new sqlite3('./log.db', {});
 
 let _module = {};
 
@@ -17,9 +17,8 @@ _module.init = () => {
     `).run();
     logCreateStmt = db.prepare('INSERT INTO logs (date, log, tz_offset) VALUES (?, ?, ?)');
     logLatestStmt = db.prepare('SELECT * FROM logs ORDER BY date DESC LIMIT ?');
+    logFromDateStmt = db.prepare('SELECT * FROM logs where date > ? ORDER BY date DESC');
 };
-
-
 
 let logs = {};
 
@@ -32,9 +31,21 @@ logs.getLatest = (numberOfRecords) => {
     return logLatestStmt.all(numberOfRecords);
 }
 
+logs.getLogsFrom = (date) => {
+    return logFromDateStmt.all(date);
+}
+
 logs.reset = () => {
     db.exec('DELETE from logs');
     console.log('logs reset done');
+}
+
+logs.parse = (logs) => {
+    return logs.map((log) => {
+        log.date = new Date(log.date).toLocaleString();
+        delete log.tz_offset;
+        return log;
+    });
 }
 
 _module.db = db;
