@@ -1,0 +1,4 @@
+sudo chmod +x terminal-logger.sh
+logger_path="$(pwd)/logger"
+sed -i "s|LOGGER_HERE_FULL_PATH|$logger_path|g" terminal-logger.sh
+sudo ln -s "$(pwd)/terminal-logger.sh" /usr/bin/tl
