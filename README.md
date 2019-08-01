@@ -9,11 +9,14 @@ Simple tool to log your daily task in a terminal.
 - [x] Offline functionality (saving to sqliteDB)
 - [x] Reset DB functionality
 - [x] Last 1 day logs info on startup
-- [ ] install script and make command global
+- [x] install script and make command global
 - [ ] Command based execution for below tasks to trigger
 - [ ] Export logs to csv / xlsx
 
 ### Setup & Installation
-`npm install`
+- `npm install`
   
-`npm start`
+- `npm start` for debugging / to change
+
+- to install globally
+`./install`
