@@ -18,6 +18,7 @@ _module.init = () => {
     logCreateStmt = db.prepare('INSERT INTO logs (date, log, tz_offset) VALUES (?, ?, ?)');
     logLatestStmt = db.prepare('SELECT * FROM logs ORDER BY date DESC LIMIT ?');
     logFromDateStmt = db.prepare('SELECT * FROM logs where date > ? ORDER BY date DESC');
+    logAll = db.prepare('SELECT * FROM logs');
 };
 
 let logs = {};
@@ -48,7 +49,7 @@ logs.parse = (logs) => {
     });
 }
 
-_module.db = db;
+_module._db = db;
 _module.models = {
     logs: logs
 };
