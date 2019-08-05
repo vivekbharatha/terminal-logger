@@ -1,11 +1,13 @@
 const db = require('./db');
 const cT = require('console.table');
+const sqlite = require('./sqlite-util');
 
 let _module = {};
 
 _module.regexp = {
     LIST_X: /^LIST_(\d+)$/,
-    RESET_LOGS: /^RESET_LOGS$/
+    RESET_LOGS: /^RESET_LOGS$/,
+    EXPORT_LOGS: /^EXPORT_LOGS$/
 }
 
 _module.parseInput = (input) => {
@@ -31,6 +33,10 @@ _module.LIST_X = (data) => {
 
 _module.RESET_LOGS = () => {
     db.models.logs.reset();
+}
+
+_module.EXPORT_LOGS = () => {
+    sqlite.exportToCsv();
 }
 
 module.exports = _module;
